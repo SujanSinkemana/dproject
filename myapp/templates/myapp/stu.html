@@ -1,0 +1,117 @@
+{% extends "myapp/main.html" %}
+{% block title %}
+{{title}}
+
+
+{% endblock title %}
+{% block content %}
+
+<style>
+    table,th,tr,td{ 
+        border:1px solid black
+    }
+</style>
+<a href="{%url 'stuform' %}" class="btn btn--link">CreateStudent</a>
+<form method="GET" action="{% url 'stu'%}">
+<input type="Text" name="q" placeholder="Search Data"/>
+</form>
+
+
+ <h2>Table of ClassRoom <h/2>
+  {{name.0}}
+  <table class="table">
+  <thead>
+    <tr>
+      
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+ 
+  {% for cl in classes %}
+  
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{cl.name}}</td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+<br>
+<br>
+<a href="{% url 'template_form'%}" class="btn btn-success" style="float:right">Add Student</a><br>
+<a href="{% url 'logout'%}" class="btn btn-warning" style="float:right">logout</a><br>
+ <h2>Table of Student <h/2>
+  {{name.0}}
+  <table class="table">
+  <thead>
+    <tr>
+      
+      <th scope="col">id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">Department</th>
+      <th scope="col">ClassRoom</th>
+      <th scope="col">Email</th>
+      <th scope="col">Address</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Action</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+ 
+  {% for st in students %}
+  
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{st.name}}</td>
+      <td>{{st.age}}</td>
+      <td>{{st.department}}</td>
+      <td>{{st.classroom.name}}</td>
+      <td>{{st.studentprofile.email}}</td>
+      <td>{{st.studentprofile.address}}</td>
+      <td>{{st.studentprofile.phone}}</td>
+      <td><a href="{% url 'student_detail' st.id %}">Detail</a>
+      <a href="{% url 'student_update' st.id %}">Update</a></td>
+      
+
+    </tr>
+
+{% endfor %}
+</tbody>
+</table>
+
+<h2>Table of Student with Profile<h/2>
+  {{name.0}}
+  <table class="table">
+  <thead>
+    <tr>
+      
+      <th scope="col">id</th>
+      <th scope="col">Email</th>
+      <th scope="col">Address</th>
+      <th scope="col">Phone</th>
+      <th scope="col">StudentName</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+ 
+  {% for st in students_profile %}
+  
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{st.email}}</td>
+      <td>{{st.address}}</td>
+      <td>{{st.phone}}</td>
+      <td>{{st.student.name}}</td>
+    </tr>
+
+{% endfor %}
+</tbody>
+</table>
+
+{% endblock content %}

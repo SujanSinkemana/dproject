@@ -1,0 +1,27 @@
+{% extends "myapp/base.html" %}
+{% block title %}
+This is tilte of page1
+
+{% endblock title %}
+{% block content %}
+ <h2>StudentForm </h2>
+ 
+ <form action="{% url 'stuform'%}" method="POST">
+    {% csrf_token %}   
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="age">Age:</label>
+        <input type="age" id="age" name="age" required>
+
+        <label for="department">Department:</label>
+        <textarea id="department" name="department" required></textarea>
+
+        <label for="classroom">ClassRoom:</label>
+        <textarea id="classroom" name="classroom"></textarea>
+        {% comment %} <a href="{% url 'stu'%}" class="submit">Submit</a> {% endcomment %}
+
+        <input type="submit" value="Submit">
+    </form>
+</table>
+{% endblock content %}

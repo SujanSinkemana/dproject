@@ -1,0 +1,29 @@
+{% extends "myapp/base.html" %}
+{% block title %}
+This is tilte of page2
+
+{% endblock title %}
+{% block content %}
+ <h2>This is page2 content <h/2>
+  {{name.0}}
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">age</th>
+      <th scope="col">relation</th>
+    </tr>
+  </thead>
+  <tbody>
+ 
+  {% for st in students %}
+  
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{st.name}}</td>
+      <td>{{st.age}}</td>
+      <td>{{st.department}}</td>
+    </tr>
+{% endfor %}
+{% endblock content %}

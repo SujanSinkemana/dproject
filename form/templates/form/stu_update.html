@@ -1,0 +1,54 @@
+{% extends "myapp/main.html" %}
+{% block tilte %}
+{{title}}
+{% endblock  %}
+
+{% block content %}
+    <h1>{{title}}</h1>
+   <form method='POST' action="{% url 'student_update' stu.id %}" enctype="multipart/form-data">
+   {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Name</label>
+    <input type="text"name="name" class="form-control" id="exampleFormControlInput1" value="{{stu.name}}">
+  </div><br>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Age</label>
+    <input type="number"name="age" class="form-control" id="exampleFormControlInput1" value="{{stu.age}}">
+  </div><br>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Department</label>
+    <input type="text" name="department" class="form-control" id="exampleFormContro" value="{{stu.department}}"> 
+  </div><br>
+    <div class="form-group">
+    <label for="exampleFormControlSelect1">Example select</label>
+    <select class="form-control" name=classroom value="{{classroom.id}}" id="exampleFormControlSelect1">
+    {% for c in classroom %}
+    <option value="{{c.id}}">{{c.name}}</option>
+    {% endfor %}
+    </select>
+  </div>
+    <br>
+    <div class="form-group">
+    <label for="exampleFormControlInput1">email</label>
+    <input type="email"name="email" class="form-control" id="exampleFormControlInput1" value="{{stu.studentprofile.email}}">
+  </div><br>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">address</label>
+    <input type="text"name="address" class="form-control" id="exampleFormControlInput1" value="{{stu.studentprofile.address}}">
+  </div><br>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">phone</label>
+    <input type="number"name="phone" class="form-control" id="exampleFormControlInput1" value="{{stu.studentprofile.phone}}">
+  </div><br>
+    <div class="form-group">
+    <label for="exampleFormControlInput1">Image</label>
+    <input type="file" name="image" class="form-control" id="exampleFormControlInput1" value="{{stu.studentprofile.image.url}}">
+  </div><br>
+
+
+  
+    <button type="submit"  class="btn-btn primary">Submit</button>
+  </div>
+    <button type="submit" a href="{% url 'stu'%}"class="btn-btn danger">Cancel</button>
+</form>
+{% endblock content %}
